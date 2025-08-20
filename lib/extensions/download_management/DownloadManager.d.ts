@@ -3,7 +3,7 @@ import { IDownloadOptions } from './types/IDownload';
 import { IDownloadResult } from './types/IDownloadResult';
 import { ProgressCallback } from './types/ProgressCallback';
 import { IProtocolHandlers } from './types/ProtocolHandlers';
-import Promise from 'bluebird';
+import Bluebird from 'bluebird';
 export type RedownloadMode = 'always' | 'never' | 'ask' | 'replace';
 export declare class AlreadyDownloaded extends Error {
     private mFileName;
@@ -30,6 +30,8 @@ declare class DownloadManager {
     private mDownloadPath;
     private mBusyWorkers;
     private mSlowWorkers;
+    private mWorkerRestartCounts;
+    private mWorkerLastRestart;
     private mQueue;
     private mNextId;
     private mSpeedCalculator;
@@ -38,6 +40,8 @@ declare class DownloadManager {
     private mResolveCache;
     private mFileExistsCB;
     private mThrottle;
+    private mHttpAgent;
+    private mHttpsAgent;
     /**
      * Creates an instance of DownloadManager.
      *
@@ -50,21 +54,30 @@ declare class DownloadManager {
      * @memberOf DownloadManager
      */
     constructor(downloadPath: string, maxWorkers: number, maxChunks: number, speedCB: (speed: number) => void, userAgent: string, protocolHandlers: IProtocolHandlers, maxBandwidth: () => number);
-    setFileExistsCB(cb: (fileName: string) => Promise<boolean>): void;
-    setDownloadPath(downloadPath: string): void;
-    setMaxConcurrentDownloads(maxConcurrent: number): void;
+    setFileExistsCB: (cb: (fileName: string) => Bluebird<boolean>) => void;
+    setDownloadPath: (downloadPath: string) => void;
+    /**
+     * Get the appropriate HTTP agent based on protocol for persistent connections
+     */
+    private getAgent;
+    /**
+     * Clean up persistent connection agents
+     */
+    cleanup(): void;
+    setMaxConcurrentDownloads: (maxConcurrent: number) => void;
+    getFreeSlots: () => number;
     /**
      * enqueues a download
      *
      * @param {string[]} urls
      * @param {(received: number, total: number) => void} progressCB
      * @param {string} [destinationPath]
-     * @returns {Promise<string>}
+     * @returns {Bluebird<string>}
      *
      * @memberOf DownloadManager
      */
-    enqueue(id: string, urls: string[], fileName: string, progressCB: ProgressCallback, destinationPath?: string, options?: IDownloadOptions): Promise<IDownloadResult>;
-    resume(id: string, filePath: string, urls: string[], received: number, size: number, started: number, chunks: IChunk[], progressCB: ProgressCallback, options?: IDownloadOptions): Promise<IDownloadResult>;
+    enqueue: (id: string, urls: string[], fileName: string, progressCB: ProgressCallback, destinationPath?: string, options?: IDownloadOptions) => Bluebird<IDownloadResult>;
+    resume: (id: string, filePath: string, urls: string[], received: number, size: number, started: number, chunks: IChunk[], progressCB: ProgressCallback, options?: IDownloadOptions) => Bluebird<IDownloadResult>;
     /**
      * cancels a download. This stops the download but doesn't remove the file
      * This call does not wait for the download to actually be stopped, it merely
@@ -76,15 +89,17 @@ declare class DownloadManager {
      *
      * @memberOf DownloadManager
      */
-    stop(id: string): boolean;
-    pause(id: string): IChunk[];
+    stop: (id: string) => boolean;
+    pause: (id: string) => IChunk[];
     private resolveUrl;
     private resolveUrls;
     private initChunk;
     private cancelDownload;
     private tickQueue;
+    private cleanupCompletedDownloads;
     private startWorker;
     private makeProgressCB;
+    private shouldRestartSlowWorker;
     private startJob;
     private makeDataCB;
     private updateDownloadSize;
@@ -107,7 +122,7 @@ declare class DownloadManager {
      *
      * @param {string} destination
      * @param {string} fileName
-     * @returns {Promise<string>}
+     * @returns {Bluebird<string>}
      */
     private unusedName;
 }

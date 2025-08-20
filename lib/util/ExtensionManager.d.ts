@@ -47,6 +47,7 @@ declare class ExtensionManager {
     private mContextProxyHandler;
     private mExtensionState;
     private mLoadFailures;
+    private mOptionalExtensions;
     private mInterpreters;
     private mStartHooks;
     private mToolParameterCBs;
@@ -147,6 +148,7 @@ declare class ExtensionManager {
     private lookupModMeta;
     private makeSorter;
     private saveModMeta;
+    private genMd5Hash;
     private openArchive;
     private applyStartHooks;
     private runExecutable;
