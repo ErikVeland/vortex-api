@@ -10,6 +10,15 @@ interface IActiveInstallation {
     startTime: number;
     baseName: string;
 }
+declare class DynamicDownloadConcurrencyLimiter {
+    private mQueue;
+    private mRunning;
+    private mApi;
+    constructor(api: IExtensionApi);
+    do<T>(cb: () => Bluebird<T>): Bluebird<T>;
+    private process;
+}
+export { DynamicDownloadConcurrencyLimiter };
 import { IInstallResult } from './types/IInstallResult';
 import { IFileListItem } from './types/IMod';
 import { InstallFunc } from './types/InstallFunc';
@@ -31,6 +40,7 @@ declare class InstallManager {
     private mInstallers;
     private mGetInstallPath;
     private mDependencyInstalls;
+    private mDependencyQueue;
     private mDependencyDownloadsLimit;
     private mDependencyInstallsLimit;
     private mPendingInstalls;

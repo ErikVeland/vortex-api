@@ -14,6 +14,7 @@
  */
 /// <reference types="node" />
 /// <reference types="node" />
+/// <reference types="node" />
 import { TFunction } from './i18n';
 import PromiseBB from 'bluebird';
 import * as fs from 'fs-extra';

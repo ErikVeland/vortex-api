@@ -14,7 +14,8 @@
         "emitDeclarationOnly": true,
         "declaration": true,
         "skipLibCheck": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "types": ["node", "react", "react-dom"]
     },
     "files": [
         "../src/index.ts",

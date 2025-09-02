@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 import { ILoadOrderEntry } from '../../../types/api';
 import { IExtensionApi, LoadOrder } from '../../../types/api';
 interface IProps {
@@ -11,5 +11,5 @@ interface IProps {
     isLocked: (item: ILoadOrderEntry) => boolean;
     onApplyIndex: (idx: number) => void;
 }
-export declare function LoadOrderIndexInput(props: IProps): JSX.Element;
+export declare function LoadOrderIndexInput(props: IProps): React.JSX.Element;
 export {};

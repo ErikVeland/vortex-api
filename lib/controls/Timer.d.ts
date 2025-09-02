@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as React from 'react';
 export interface ITimerProps {
     className?: string;
     started: number;
@@ -6,5 +6,5 @@ export interface ITimerProps {
     duration: number;
     onTrigger?: () => void;
 }
-declare function Timer(props: ITimerProps): JSX.Element;
+declare function Timer(props: ITimerProps): React.JSX.Element;
 export default Timer;
