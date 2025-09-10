@@ -1,6 +1,5 @@
-import * as reduxAct from 'redux-act';
-export declare const setAutoDeployment: reduxAct.ComplexActionCreator1<unknown, unknown, {}>;
-export declare const setAutoInstall: reduxAct.ComplexActionCreator1<unknown, unknown, {}>;
-export declare const setAutoEnable: reduxAct.ComplexActionCreator1<unknown, unknown, {}>;
-export declare const setAutoStart: reduxAct.ComplexActionCreator1<unknown, unknown, {}>;
-export declare const setStartMinimized: reduxAct.ComplexActionCreator1<unknown, unknown, {}>;
+export declare const setAutoDeployment: import("redux-act").ComplexActionCreator1<boolean, boolean, {}>;
+export declare const setAutoInstall: import("redux-act").ComplexActionCreator1<boolean, boolean, {}>;
+export declare const setAutoEnable: import("redux-act").ComplexActionCreator1<boolean, boolean, {}>;
+export declare const setAutoStart: import("redux-act").ComplexActionCreator1<boolean, boolean, {}>;
+export declare const setStartMinimized: import("redux-act").ComplexActionCreator1<boolean, boolean, {}>;

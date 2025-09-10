@@ -10,7 +10,7 @@
  * to store the load order, it's only stored in the form of mod names and it would be
  * impractical to redeploy every time the load order is changed)
  */
-export declare const setLoadOrder: import("redux-act").ComplexActionCreator2<string, any[], {
+export declare const setLoadOrder: import("redux-act").ComplexActionCreator2<unknown, unknown, {
     id: string;
-    order: any[];
+    order: unknown;
 }, {}>;

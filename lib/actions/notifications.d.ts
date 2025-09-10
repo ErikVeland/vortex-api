@@ -1,4 +1,4 @@
-import { DialogActions, DialogType, IDialogContent, IDialogResult } from '../types/IDialog';
+import { DialogActions, DialogType, IDialog, IDialogContent, IDialogResult } from '../types/IDialog';
 import { INotification, NotificationDismiss } from '../types/INotification';
 import Promise from 'bluebird';
 import * as reduxAct from 'redux-act';
@@ -7,7 +7,7 @@ export * from '../types/IDialog';
  * adds a notification to be displayed. Takes one parameter of type INotification. The id may be
  * left unset, in that case one will be generated
  */
-export declare const startNotification: reduxAct.ComplexActionCreator1<any, any, {}>;
+export declare const startNotification: reduxAct.ComplexActionCreator1<INotification, INotification, {}>;
 export declare const updateNotification: reduxAct.ComplexActionCreator3<string, number, string, {
     id: string;
     progress: number;
@@ -19,20 +19,13 @@ export declare const updateNotification: reduxAct.ComplexActionCreator3<string, 
 /**
  * dismiss a notification. Takes the id of the notification
  */
-export declare const stopNotification: reduxAct.ComplexActionCreator1<any, any, {}>;
+export declare const stopNotification: reduxAct.ComplexActionCreator1<string, string, {}>;
 /**
  * show a modal dialog to the user
  *
  * don't call this directly, use showDialog
  */
-export declare const addDialog: reduxAct.ComplexActionCreator6<string, string, string, IDialogContent, string, string[], {
-    id: string;
-    type: string;
-    title: string;
-    content: IDialogContent;
-    defaultAction: string;
-    actions: string[];
-}, {}>;
+export declare const addDialog: reduxAct.ComplexActionCreator6<string, DialogType, string, IDialogContent, string, string[], IDialog, {}>;
 /**
  * dismiss the dialog being displayed
  *
@@ -40,7 +33,7 @@ export declare const addDialog: reduxAct.ComplexActionCreator6<string, string, s
  * you leak (a tiny amount of) memory and the action callbacks aren't called.
  * Use closeDialog instead
  */
-export declare const dismissDialog: reduxAct.ComplexActionCreator1<any, any, {}>;
+export declare const dismissDialog: reduxAct.ComplexActionCreator1<string, string, {}>;
 export declare function fireNotificationAction(notiId: string, notiProcess: string, action: number, dismiss: NotificationDismiss): void;
 export declare function setupNotificationSuppression(cb: (id: string) => boolean): void;
 /**
