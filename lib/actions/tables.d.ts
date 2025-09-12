@@ -10,10 +10,10 @@ export declare const setAttributeSort: reduxAct.ComplexActionCreator3<string, st
     attributeId: string;
     direction: SortDirection;
 }, {}>;
-export declare const setAttributeFilter: reduxAct.ComplexActionCreator3<string, string, any, {
+export declare const setAttributeFilter: reduxAct.ComplexActionCreator3<string, string, unknown, {
     tableId: string;
     attributeId: string;
-    filter: any;
+    filter: unknown;
 }, {}>;
 export declare const setGroupingAttribute: reduxAct.ComplexActionCreator2<string, string, {
     tableId: string;

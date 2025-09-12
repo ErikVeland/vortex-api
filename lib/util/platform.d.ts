@@ -75,3 +75,8 @@ export declare function getWineDriveCPath(): string;
  * Check if Wine is available on Linux
  */
 export declare function isWineAvailable(): boolean;
+/**
+ * Check if running on macOS with virtualization support
+ * This is always true on macOS as we can detect Crossover/Parallels
+ */
+export declare function isMacOSWithVirtualization(): boolean;

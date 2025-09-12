@@ -60,9 +60,9 @@ declare class ExtensionManager {
     private mFailedWatchers;
     private mExtensionFormats;
     constructor(initStore?: Redux.Store<any>, eventEmitter?: NodeJS.EventEmitter);
-    get hasOutdatedExtensions(): boolean;
     setTranslation(translator: i18n): void;
     get extensions(): IRegisteredExtension[];
+    get hasOutdatedExtensions(): boolean;
     /**
      * sets up the extension manager to work with the specified store
      *
@@ -117,6 +117,7 @@ declare class ExtensionManager {
      */
     doOnce(): Promise<void>;
     renderStyle(): Promise<void>;
+    private ensureStyleManager;
     getProtocolHandler(protocol: string): (url: string, install: boolean) => void;
     get numOnce(): number;
     onLoadingExtension(cb: (name: string, idx: number) => void): void;
