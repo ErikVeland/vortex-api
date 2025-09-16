@@ -62,7 +62,7 @@ function externalsDirect() {
 
 function externals() {
   return Object.assign({}, 
-    externalsDirect(),
+                       externalsDirect(),
   );
 }
 

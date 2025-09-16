@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-;(function(){
+(function(){
 
   /**
    * A convenience function for configuring and constructing
@@ -37,8 +37,8 @@
    * @see {@link lunr.stemmer}
    * @namespace {function} lunr
    */
-  var lunr = function (config) {
-    var builder = new lunr.Builder
+  const lunr = function (config) {
+    const builder = new lunr.Builder
   
     builder.pipeline.add(
       lunr.trimmer,
@@ -123,12 +123,12 @@
       return obj
     }
   
-    var clone = Object.create(null),
-        keys = Object.keys(obj)
+    const clone = Object.create(null),
+      keys = Object.keys(obj)
   
-    for (var i = 0; i < keys.length; i++) {
-      var key = keys[i],
-          val = obj[key]
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i],
+        val = obj[key]
   
       if (Array.isArray(val)) {
         clone[key] = val.slice()
@@ -156,14 +156,14 @@
   lunr.FieldRef.joiner = "/"
   
   lunr.FieldRef.fromString = function (s) {
-    var n = s.indexOf(lunr.FieldRef.joiner)
+    const n = s.indexOf(lunr.FieldRef.joiner)
   
     if (n === -1) {
       throw "malformed field ref string"
     }
   
-    var fieldRef = s.slice(0, n),
-        docRef = s.slice(n + 1)
+    const fieldRef = s.slice(0, n),
+      docRef = s.slice(n + 1)
   
     return new lunr.FieldRef (docRef, fieldRef, s)
   }
@@ -191,7 +191,7 @@
     if (elements) {
       this.length = elements.length
   
-      for (var i = 0; i < this.length; i++) {
+      for (let i = 0; i < this.length; i++) {
         this.elements[elements[i]] = true
       }
     } else {
@@ -260,7 +260,7 @@
    */
   
   lunr.Set.prototype.intersect = function (other) {
-    var a, b, elements, intersection = []
+    let a, b, elements, intersection = []
   
     if (other === lunr.Set.complete) {
       return this
@@ -280,8 +280,8 @@
   
     elements = Object.keys(a.elements)
   
-    for (var i = 0; i < elements.length; i++) {
-      var element = elements[i]
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i]
       if (element in b.elements) {
         intersection.push(element)
       }
@@ -317,14 +317,14 @@
    * @param {number} documentCount - The total number of documents.
    */
   lunr.idf = function (posting, documentCount) {
-    var documentsWithTerm = 0
+    let documentsWithTerm = 0
   
-    for (var fieldName in posting) {
+    for (const fieldName in posting) {
       if (fieldName == '_index') continue // Ignore the term index, its not a field
       documentsWithTerm += Object.keys(posting[fieldName]).length
     }
   
-    var x = (documentCount - documentsWithTerm + 0.5) / (documentsWithTerm + 0.5)
+    const x = (documentCount - documentsWithTerm + 0.5) / (documentsWithTerm + 0.5)
   
     return Math.log(1 + Math.abs(x))
   }
@@ -424,18 +424,18 @@
       })
     }
   
-    var str = obj.toString().toLowerCase(),
-        len = str.length,
-        tokens = []
+    const str = obj.toString().toLowerCase(),
+      len = str.length,
+      tokens = []
   
-    for (var sliceEnd = 0, sliceStart = 0; sliceEnd <= len; sliceEnd++) {
-      var char = str.charAt(sliceEnd),
-          sliceLength = sliceEnd - sliceStart
+    for (let sliceEnd = 0, sliceStart = 0; sliceEnd <= len; sliceEnd++) {
+      const char = str.charAt(sliceEnd),
+        sliceLength = sliceEnd - sliceStart
   
       if ((char.match(lunr.tokenizer.separator) || sliceEnd == len)) {
   
         if (sliceLength > 0) {
-          var tokenMetadata = lunr.utils.clone(metadata) || {}
+          const tokenMetadata = lunr.utils.clone(metadata) || {}
           tokenMetadata["position"] = [sliceStart, sliceLength]
           tokenMetadata["index"] = tokens.length
   
@@ -552,7 +552,7 @@
    * @private
    */
   lunr.Pipeline.warnIfFunctionNotRegistered = function (fn) {
-    var isRegistered = fn.label && (fn.label in this.registeredFunctions)
+    const isRegistered = fn.label && (fn.label in this.registeredFunctions)
   
     if (!isRegistered) {
       lunr.utils.warn('Function is not registered with pipeline. This may cause problems when serialising the index.\n', fn)
@@ -570,10 +570,10 @@
    * @returns {lunr.Pipeline}
    */
   lunr.Pipeline.load = function (serialised) {
-    var pipeline = new lunr.Pipeline
+    const pipeline = new lunr.Pipeline
   
     serialised.forEach(function (fnName) {
-      var fn = lunr.Pipeline.registeredFunctions[fnName]
+      const fn = lunr.Pipeline.registeredFunctions[fnName]
   
       if (fn) {
         pipeline.add(fn)
@@ -593,7 +593,7 @@
    * @param {lunr.PipelineFunction[]} functions - Any number of functions to add to the pipeline.
    */
   lunr.Pipeline.prototype.add = function () {
-    var fns = Array.prototype.slice.call(arguments)
+    const fns = Array.prototype.slice.call(arguments)
   
     fns.forEach(function (fn) {
       lunr.Pipeline.warnIfFunctionNotRegistered(fn)
@@ -613,7 +613,7 @@
   lunr.Pipeline.prototype.after = function (existingFn, newFn) {
     lunr.Pipeline.warnIfFunctionNotRegistered(newFn)
   
-    var pos = this._stack.indexOf(existingFn)
+    let pos = this._stack.indexOf(existingFn)
     if (pos == -1) {
       throw new Error('Cannot find existingFn')
     }
@@ -634,7 +634,7 @@
   lunr.Pipeline.prototype.before = function (existingFn, newFn) {
     lunr.Pipeline.warnIfFunctionNotRegistered(newFn)
   
-    var pos = this._stack.indexOf(existingFn)
+    const pos = this._stack.indexOf(existingFn)
     if (pos == -1) {
       throw new Error('Cannot find existingFn')
     }
@@ -648,7 +648,7 @@
    * @param {lunr.PipelineFunction} fn The function to remove from the pipeline.
    */
   lunr.Pipeline.prototype.remove = function (fn) {
-    var pos = this._stack.indexOf(fn)
+    const pos = this._stack.indexOf(fn)
     if (pos == -1) {
       return
     }
@@ -664,19 +664,19 @@
    * @returns {Array}
    */
   lunr.Pipeline.prototype.run = function (tokens) {
-    var stackLength = this._stack.length
+    const stackLength = this._stack.length
   
-    for (var i = 0; i < stackLength; i++) {
-      var fn = this._stack[i]
-      var memo = []
+    for (let i = 0; i < stackLength; i++) {
+      const fn = this._stack[i]
+      const memo = []
   
-      for (var j = 0; j < tokens.length; j++) {
-        var result = fn(tokens[j], j, tokens)
+      for (let j = 0; j < tokens.length; j++) {
+        const result = fn(tokens[j], j, tokens)
   
         if (result === null || result === void 0 || result === '') continue
   
         if (Array.isArray(result)) {
-          for (var k = 0; k < result.length; k++) {
+          for (let k = 0; k < result.length; k++) {
             memo.push(result[k])
           }
         } else {
@@ -701,7 +701,7 @@
    * @returns {string[]}
    */
   lunr.Pipeline.prototype.runString = function (str, metadata) {
-    var token = new lunr.Token (str, metadata)
+    const token = new lunr.Token (str, metadata)
   
     return this.run([token]).map(function (t) {
       return t.toString()
@@ -773,11 +773,11 @@
       return 0
     }
   
-    var start = 0,
-        end = this.elements.length / 2,
-        sliceLength = end - start,
-        pivotPoint = Math.floor(sliceLength / 2),
-        pivotIndex = this.elements[pivotPoint * 2]
+    let start = 0,
+      end = this.elements.length / 2,
+      sliceLength = end - start,
+      pivotPoint = Math.floor(sliceLength / 2),
+      pivotIndex = this.elements[pivotPoint * 2]
   
     while (sliceLength > 1) {
       if (pivotIndex < index) {
@@ -835,7 +835,7 @@
    */
   lunr.Vector.prototype.upsert = function (insertIdx, val, fn) {
     this._magnitude = 0
-    var position = this.positionForIndex(insertIdx)
+    const position = this.positionForIndex(insertIdx)
   
     if (this.elements[position] == insertIdx) {
       this.elements[position + 1] = fn(this.elements[position + 1], val)
@@ -852,11 +852,11 @@
   lunr.Vector.prototype.magnitude = function () {
     if (this._magnitude) return this._magnitude
   
-    var sumOfSquares = 0,
-        elementsLength = this.elements.length
+    let sumOfSquares = 0,
+      elementsLength = this.elements.length
   
-    for (var i = 1; i < elementsLength; i += 2) {
-      var val = this.elements[i]
+    for (let i = 1; i < elementsLength; i += 2) {
+      const val = this.elements[i]
       sumOfSquares += val * val
     }
   
@@ -870,11 +870,11 @@
    * @returns {Number}
    */
   lunr.Vector.prototype.dot = function (otherVector) {
-    var dotProduct = 0,
-        a = this.elements, b = otherVector.elements,
-        aLen = a.length, bLen = b.length,
-        aVal = 0, bVal = 0,
-        i = 0, j = 0
+    let dotProduct = 0,
+      a = this.elements, b = otherVector.elements,
+      aLen = a.length, bLen = b.length,
+      aVal = 0, bVal = 0,
+      i = 0, j = 0
   
     while (i < aLen && j < bLen) {
       aVal = a[i], bVal = b[j]
@@ -909,9 +909,9 @@
    * @returns {Number[]}
    */
   lunr.Vector.prototype.toArray = function () {
-    var output = new Array (this.elements.length / 2)
+    const output = new Array (this.elements.length / 2)
   
-    for (var i = 1, j = 0; i < this.elements.length; i += 2, j++) {
+    for (let i = 1, j = 0; i < this.elements.length; i += 2, j++) {
       output[j] = this.elements[i]
     }
   

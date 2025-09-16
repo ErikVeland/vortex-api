@@ -116,4 +116,8 @@ export interface IDownload {
      * whether the download server supports resuming downloads
      */
     pausable?: boolean;
+    /**
+     * reason why the download was paused (e.g., 'network', 'user')
+     */
+    pauseReason?: string;
 }
