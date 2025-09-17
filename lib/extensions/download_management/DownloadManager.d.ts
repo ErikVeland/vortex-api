@@ -56,7 +56,6 @@ declare class DownloadManager {
     constructor(downloadPath: string, maxWorkers: number, maxChunks: number, speedCB: (speed: number) => void, userAgent: string, protocolHandlers: IProtocolHandlers, maxBandwidth: () => number);
     setFileExistsCB: (cb: (fileName: string) => Bluebird<boolean>) => void;
     setDownloadPath: (downloadPath: string) => void;
-    setMaxConcurrentDownloads: (maxConcurrent: number) => void;
     /**
      * Get the appropriate HTTP agent based on protocol for persistent connections
      */

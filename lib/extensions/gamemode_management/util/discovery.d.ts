@@ -14,11 +14,13 @@ export declare function quickDiscoveryTools(gameId: string, tools: ITool[], onDi
  * @export
  * @param {IGame[]} knownGames
  * @param {DiscoveredCB} onDiscoveredGame
+ * @param {DiscoveredToolCB} onDiscoveredTool
+ * @param {Function} onProgress optional progress callback
  * @return the list of gameIds that were discovered
  */
 export declare function quickDiscovery(knownGames: IGame[], discoveredGames: {
     [id: string]: IDiscoveryResult;
-}, onDiscoveredGame: DiscoveredCB, onDiscoveredTool: DiscoveredToolCB): Bluebird<string[]>;
+}, onDiscoveredGame: DiscoveredCB, onDiscoveredTool: DiscoveredToolCB, onProgress?: (gameId: string, step: string, percent: number) => void): Bluebird<string[]>;
 export declare function assertToolDir(tool: ITool, testPath: string): Bluebird<string>;
 export declare function discoverRelativeTools(game: IGame, gamePath: string, discoveredGames: {
     [id: string]: IDiscoveryResult;

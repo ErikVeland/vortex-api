@@ -57,7 +57,7 @@ declare class GameModeManager {
      *
      * @memberOf GameModeManager
      */
-    startQuickDiscovery(games?: IGame[]): Promise<string[]>;
+    startQuickDiscovery(games?: IGame[], showProgress?: boolean): Promise<string[]>;
     startToolDiscovery(gameId: string): Promise<void>;
     isSearching(): boolean;
     /**
