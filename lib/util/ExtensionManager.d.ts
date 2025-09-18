@@ -59,6 +59,8 @@ declare class ExtensionManager {
     private mOutdated;
     private mFailedWatchers;
     private mExtensionFormats;
+    private stubRegisterGame;
+    private pendingGameRegistrations;
     constructor(initStore?: Redux.Store<any>, eventEmitter?: NodeJS.EventEmitter);
     setTranslation(translator: i18n): void;
     get extensions(): IRegisteredExtension[];
