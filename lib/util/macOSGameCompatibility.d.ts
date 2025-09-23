@@ -40,3 +40,25 @@ export declare function getMacOSArchitecture(): 'arm64' | 'x64';
  * Intercept and modify download URLs for macOS compatibility
  */
 export declare function interceptDownloadURLForMacOS(url: string): string;
+/**
+ * Find macOS app bundle in a directory
+ * @param basePath Base directory to search in
+ * @param appBundleName Expected app bundle name
+ * @returns Full path to app bundle or null if not found
+ */
+export declare function findMacOSAppBundle(basePath: string, appBundleName: string): Promise<string | null>;
+/**
+ * Get the actual executable path inside a macOS app bundle
+ * @param appBundlePath Path to the .app bundle
+ * @returns Path to the actual executable inside the bundle
+ */
+export declare function getExecutableFromAppBundle(appBundlePath: string): Promise<string | null>;
+/**
+ * Normalize a game path for macOS
+ * This handles cases where the game might be in different locations
+ * @param basePath Base path where the game is expected to be
+ * @param gameId Game ID for specific handling
+ * @param expectedExecutable Expected executable name
+ * @returns Normalized path or null if not found
+ */
+export declare function normalizeGamePathForMacOS(basePath: string, gameId: string, expectedExecutable?: string): Promise<string | null>;
