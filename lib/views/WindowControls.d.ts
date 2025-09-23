@@ -11,6 +11,8 @@ declare class WindowControls extends React.Component<{}, {
     private onMaximize;
     private onUnMaximize;
     private onClose;
+    private onEnterFullScreen;
+    private onLeaveFullScreen;
     private toggleMaximize;
     private close;
 }

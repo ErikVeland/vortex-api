@@ -32,6 +32,12 @@ declare class GameModeManager {
      */
     attachToStore(store: Redux.Store<IState>): void;
     /**
+     * refresh the known games list in the store
+     *
+     * @memberOf GameModeManager
+     */
+    refreshKnownGames(): void;
+    /**
      * update the game mode being managed
      *
      * @param {string} newMode
