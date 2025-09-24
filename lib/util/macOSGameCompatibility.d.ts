@@ -4,7 +4,6 @@
  * This module provides compatibility fixes for community game extensions
  * that may not properly handle macOS-specific executable formats.
  */
-import Promise from 'bluebird';
 export interface MacOSGameFix {
     /** Game ID to apply the fix to */
     gameId: string;
@@ -46,13 +45,13 @@ export declare function interceptDownloadURLForMacOS(url: string): string;
  * @param appBundleName Expected app bundle name
  * @returns Full path to app bundle or null if not found
  */
-export declare function findMacOSAppBundle(basePath: string, appBundleName: string): Promise<string | null>;
+export declare function findMacOSAppBundle(basePath: string, appBundleName: string): Promise<string>;
 /**
  * Get the actual executable path inside a macOS app bundle
  * @param appBundlePath Path to the .app bundle
  * @returns Path to the actual executable inside the bundle
  */
-export declare function getExecutableFromAppBundle(appBundlePath: string): Promise<string | null>;
+export declare function getExecutableFromAppBundle(appBundlePath: string): Promise<string>;
 /**
  * Normalize a game path for macOS
  * This handles cases where the game might be in different locations
@@ -61,4 +60,4 @@ export declare function getExecutableFromAppBundle(appBundlePath: string): Promi
  * @param expectedExecutable Expected executable name
  * @returns Normalized path or null if not found
  */
-export declare function normalizeGamePathForMacOS(basePath: string, gameId: string, expectedExecutable?: string): Promise<string | null>;
+export declare function normalizeGamePathForMacOS(basePath: string, gameId: string, expectedExecutable?: string): Promise<string>;
