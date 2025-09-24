@@ -119,7 +119,7 @@ async function main() {
   for (const article of articles) {
     await fs.writeFile(path.join('docs', '_posts', articleFileName(article) + '.md'), articleFrame(article, order));
   }
-  console.log(articles);
+  console.log('📄 Articles:', articles);
 }
 
 main();

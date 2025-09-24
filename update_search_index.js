@@ -63,7 +63,7 @@ async function main() {
     await addPosts(this),
     await addReference(this),
   );
-  console.log('# search entries', entries.length);
+  console.log('📊 # search entries', entries.length);
   const idx = lunr(function() {
     this.ref('id');
     this.field('author');
