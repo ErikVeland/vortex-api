@@ -20,3 +20,6 @@ export declare function downloadGithubRelease(api: IExtensionApi, ext: IExtensio
 export declare function downloadFile(url: string, outputPath: string): Promise<void>;
 export declare function downloadGithubRaw(api: IExtensionApi, ext: IExtensionDownloadInfo): Promise<string[]>;
 export declare function readExtensibleDir(extType: ExtensionType, bundledPath: string, customPath: string): Promise<any[]>;
+export declare function readExtensionsSync(force?: boolean): {
+    [extId: string]: IExtension;
+};

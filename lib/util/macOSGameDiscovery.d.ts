@@ -22,14 +22,21 @@ export interface MacOSGameCandidate {
     type: 'native' | 'app' | 'steam' | 'epic' | 'gog' | 'windows';
     priority: number;
     store?: string;
+    manifestData?: {
+        appId: string;
+        name: string;
+        installDir: string;
+        manifestPath: string;
+    };
 }
 /**
  * macOS game discovery priority levels
+ * Lower numbers = higher priority
  */
 export declare const MACOS_DISCOVERY_PRIORITIES: {
+    STEAM: number;
     NATIVE_APP: number;
     APP_STORE: number;
-    STEAM: number;
     EPIC: number;
     GOG: number;
     OTHER_MAC_STORES: number;
