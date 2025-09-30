@@ -119,6 +119,7 @@ export declare function checkFileWithMacOSFallback(basePath: string, fileName: s
 export declare function validateRequiredFilesWithMacOSCompat(basePath: string, requiredFiles: string[], gameId: string): Promise<void>;
 /**
  * Get the appropriate executable path for the current platform
+ * Enhanced with integration to the path normalization system
  */
 export declare function getExecutablePathForPlatform(basePath: string, gameId: string, windowsExecutable?: string): string | null;
 /**
@@ -146,12 +147,13 @@ export declare function getExecutableFromAppBundle(appBundlePath: string): Promi
 /**
  * Normalize a game path for macOS
  * This handles cases where the game might be in different locations
+ * Enhanced with integration to the path normalization system
  * @param basePath Base path where the game is expected to be
  * @param gameId Game ID for specific handling
  * @param expectedExecutable Expected executable name
  * @returns Normalized path or null if not found
  */
-export declare function normalizeGamePathForMacOS(basePath: string, gameId: string, expectedExecutable?: string): Promise<string>;
+export declare function normalizeGamePathForMacOS(basePath: string, gameId: string, expectedExecutable?: string): Promise<any>;
 /**
  * Get the appropriate executable path for Cyberpunk 2077 based on redscript availability and platform
  */
@@ -259,6 +261,39 @@ export declare function detectSteamModdedForBalatro(gamePath: string): Promise<b
  * @param gamePath - Path to the Balatro game installation
  * @returns Promise<object> - Detailed compatibility information
  */
+export interface ExecutableNameMapping {
+    windowsExecutable: string;
+    macOSExecutable: string;
+    description: string;
+    gameId?: string;
+}
+/**
+ * Register a custom executable name mapping for community extensions
+ * @param mapping The executable name mapping to register
+ */
+export declare function registerCustomExecutableNameMapping(mapping: ExecutableNameMapping): void;
+/**
+ * Get all executable name mappings (both static and custom)
+ * @param gameId Optional game ID to filter mappings
+ * @returns Array of executable name mappings
+ */
+export declare function getExecutableNameMappings(gameId?: string): ExecutableNameMapping[];
+/**
+ * Map a Windows executable name to its macOS equivalent
+ * @param windowsExecutable The Windows executable name
+ * @param gameId Optional game ID for game-specific mappings
+ * @returns The macOS executable name, or the original name if no mapping exists
+ */
+export declare function mapWindowsExecutableToMacOS(windowsExecutable: string, gameId?: string): string;
+/**
+ * Validate an executable name mapping
+ * @param mapping The mapping to validate
+ * @returns Validation result with success status and any errors
+ */
+export declare function validateExecutableNameMapping(mapping: ExecutableNameMapping): {
+    success: boolean;
+    errors: string[];
+};
 export declare function validateBalatroPlatformCompatibility(gamePath: string): Promise<{
     isValid: boolean;
     hasLovelyInjector: boolean;

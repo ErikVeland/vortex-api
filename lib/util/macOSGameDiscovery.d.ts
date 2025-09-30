@@ -19,7 +19,7 @@ export interface MacOSGameDiscoveryOptions {
 export interface MacOSGameCandidate {
     path: string;
     executable: string;
-    type: 'native' | 'app' | 'steam' | 'epic' | 'gog' | 'windows';
+    type: 'native' | 'app' | 'steam' | 'epic' | 'gog' | 'windows' | 'steam-crossover' | 'steam-parallels' | 'epic-crossover' | 'epic-parallels' | 'gog-crossover' | 'gog-parallels' | 'windows-crossover' | 'windows-parallels' | 'other-store' | 'windows-vmware';
     priority: number;
     store?: string;
     manifestData?: {
@@ -27,19 +27,35 @@ export interface MacOSGameCandidate {
         name: string;
         installDir: string;
         manifestPath: string;
+        matchConfidence?: string;
+        source?: string;
+        compatibilityLayer?: string;
+        bottlePath?: string;
+        vmPath?: string;
+        storePath?: string;
+        windowsExecutable?: string;
+        gameId?: string;
+        manifestFile?: string;
     };
 }
 /**
  * macOS game discovery priority levels
  * Lower numbers = higher priority
+ * Enhanced with more granular priorities for better source differentiation
  */
 export declare const MACOS_DISCOVERY_PRIORITIES: {
-    STEAM: number;
+    STEAM_NATIVE: number;
     NATIVE_APP: number;
     APP_STORE: number;
-    EPIC: number;
-    GOG: number;
+    STEAM_CROSSOVER: number;
+    EPIC_NATIVE: number;
+    GOG_NATIVE: number;
+    STEAM_PARALLELS: number;
+    EPIC_CROSSOVER: number;
+    GOG_CROSSOVER: number;
     OTHER_MAC_STORES: number;
+    EPIC_PARALLELS: number;
+    GOG_PARALLELS: number;
     CROSSOVER: number;
     PARALLELS: number;
     VMWARE: number;
@@ -57,6 +73,7 @@ export declare function discoverMacOSGames(knownGames: IGame[], discoveredGames:
 export declare function discoverMacOSGamesInternal(options: MacOSGameDiscoveryOptions, onProgress?: (step: string, percent: number) => void): Promise<MacOSGameCandidate[]>;
 /**
  * Get the best game candidate from discovery results
+ * Enhanced with more sophisticated selection logic based on priority and confidence
  */
 export declare function getBestMacOSGameCandidate(candidates: MacOSGameCandidate[]): MacOSGameCandidate | null;
 export {};
