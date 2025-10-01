@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { IAttributeState } from './IAttributeState';
 import { IDialog } from './IDialog';
 import { INotification } from './INotification';
@@ -320,7 +319,8 @@ export interface IModTable {
 }
 export interface IOverlay {
     title: string;
-    content: string | React.ComponentType<any>;
+    content?: string;
+    componentId?: string;
     position: IPosition;
     options?: IOverlayOptions;
 }

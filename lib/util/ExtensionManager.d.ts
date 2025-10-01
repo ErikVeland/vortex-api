@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { IAvailableExtension, IExtension } from '../extensions/extension_manager/types';
 import { ExtensionInit } from '../types/Extension';
 import { IExtensionApi, IExtensionContext, ThunkStore } from '../types/IExtensionContext';
@@ -127,6 +126,7 @@ declare class ExtensionManager {
     private watcherError;
     private queryLoadTimeout;
     private getModDB;
+    private canBeToast;
     private getMetaServerList;
     private connectMetaDB;
     private stateChangeHandler;

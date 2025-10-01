@@ -19,7 +19,8 @@ export declare const updateNotification: reduxAct.ComplexActionCreator3<string, 
 /**
  * dismiss a notification. Takes the id of the notification
  */
-export declare const stopNotification: reduxAct.ComplexActionCreator1<string, string, {}>;
+export declare const stopNotification: reduxAct.ComplexActionCreator1<any, any, {}>;
+export declare const stopAllNotifications: reduxAct.EmptyActionCreator;
 /**
  * show a modal dialog to the user
  *
@@ -45,6 +46,7 @@ export declare function setupNotificationSuppression(cb: (id: string) => boolean
  */
 export declare function addNotification(notification: INotification): (dispatch: any) => Promise<void>;
 export declare function dismissNotification(id: string): (dispatch: any) => Promise<void>;
+export declare function dismissAllNotifications(): (dispatch: any) => Promise<void>;
 /**
  * show a dialog
  *

@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as Promise from 'bluebird';
 import { IActionDefinitionEx } from '../../../controls/ActionControl';
 import { IMod } from '../../../types/IState';
 export type SortType = 'ascending' | 'descending';
