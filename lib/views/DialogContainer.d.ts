@@ -12,5 +12,5 @@ export interface IBaseProps {
 export interface IExtendedProps {
     objects: IExtDialog[];
 }
-declare const _default: React.ComponentClass<IBaseProps>;
+declare const _default: React.ComponentClass<IBaseProps, any>;
 export default _default;

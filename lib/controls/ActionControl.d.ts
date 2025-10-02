@@ -12,5 +12,5 @@ export interface IActionDefinitionEx extends IActionDefinition {
     show: boolean | string;
     subMenus?: IActionDefinitionEx[] | (() => IActionDefinitionEx[]);
 }
-declare const _default: React.ComponentClass<IActionControlProps>;
+declare const _default: React.ComponentClass<IActionControlProps, any>;
 export default _default;

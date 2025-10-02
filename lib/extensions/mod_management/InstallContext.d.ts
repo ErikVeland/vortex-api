@@ -1,5 +1,4 @@
 import { IExtensionApi } from '../../types/IExtensionContext';
-import { NotificationAggregator } from './NotificationAggregator';
 import { IInstallContext, InstallOutcome } from './types/IInstallContext';
 import { IMod } from './types/IMod';
 declare class InstallContext implements IInstallContext {
@@ -29,11 +28,7 @@ declare class InstallContext implements IInstallContext {
     private mDidReportError;
     private mLastPhase;
     private mLastProgress;
-    private mApi;
-    private mStartTime;
-    private mNotificationAggregator?;
-    private mSourceModId?;
-    constructor(gameMode: string, api: IExtensionApi, silent: boolean, notificationAggregator?: NotificationAggregator, sourceModId?: string);
+    constructor(gameMode: string, api: IExtensionApi, silent: boolean);
     startIndicator(id: string): void;
     stopIndicator(mod?: IMod): void;
     setProgress(phase: string, percent?: number): void;

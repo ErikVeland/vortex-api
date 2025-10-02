@@ -2,7 +2,6 @@
  * helper class to limit concurrency with asynchronous functions.
  */
 declare class ConcurrencyLimiter {
-    private mInitialLimit;
     private mLimit;
     private mNext;
     private mEndOfQueue;
@@ -19,7 +18,6 @@ declare class ConcurrencyLimiter {
      *                   handle errors that indicate the resource running out separately
      */
     constructor(limit: number, repeatTest?: (err: Error) => boolean);
-    clearQueue(): void;
     do<T>(cb: () => PromiseLike<T>): Promise<T>;
     private doImpl;
     private process;

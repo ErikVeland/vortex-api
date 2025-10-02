@@ -20,5 +20,5 @@ export interface IProps {
     emptyIcon?: string;
     maxLength?: number;
 }
-declare const _default: React.ComponentClass<IProps>;
+declare const _default: React.ComponentClass<IProps, any>;
 export default _default;

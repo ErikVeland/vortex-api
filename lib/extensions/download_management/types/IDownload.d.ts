@@ -9,9 +9,6 @@ export interface IDownloadOptions {
     referer?: string;
     redownload?: RedownloadMode;
     nameHint?: string;
-    tag?: string;
-    urls?: string[];
-    fileName?: string;
 }
 /**
  * download information

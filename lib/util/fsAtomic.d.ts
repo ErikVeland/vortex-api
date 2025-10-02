@@ -1,3 +1,5 @@
+/// <reference types="node" />
+/// <reference types="node" />
 import Promise from 'bluebird';
 export declare function writeFileAtomic(filePath: string, input: string | Buffer): Promise<void>;
 /**

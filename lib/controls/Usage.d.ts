@@ -5,5 +5,5 @@ export interface IUsageProps {
     className?: string;
     opaque?: boolean;
 }
-declare const _default: React.ComponentClass<IUsageProps>;
+declare const _default: React.ComponentClass<IUsageProps, any>;
 export default _default;

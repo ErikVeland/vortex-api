@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { ITString, TFunction } from '../util/i18n';
 export type AttributeRenderer = 'progress';
 export type Placement = 'table' | 'detail' | 'both' | 'inline';

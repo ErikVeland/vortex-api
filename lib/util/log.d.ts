@@ -1,8 +1,8 @@
 /**
  * wrapper for logging functionality
  */
-export declare function valueReplacer(): (key: string, value: any) => any;
 export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
+export declare function valueReplacer(): (key: string, value: any) => any;
 export declare function setLogPath(basePath: string): void;
 /**
  * application specific logging setup

@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { ICollectionInfo, IRevision, SourceType, UpdatePolicy } from '@nexusmods/nexus-api';
 import * as types from '../../../types/api';
 import { ILoadOrder } from '../types/types';

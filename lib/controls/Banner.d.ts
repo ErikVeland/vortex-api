@@ -5,5 +5,5 @@ export interface IBaseProps {
     cycleTime?: number;
 }
 export type ExportType = IBaseProps & IExtensibleProps & React.HTMLAttributes<any> & any;
-declare const _default: React.ComponentClass<ExportType>;
+declare const _default: React.ComponentClass<any, any>;
 export default _default;

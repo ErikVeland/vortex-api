@@ -1,3 +1,5 @@
+/// <reference types="node" />
+/// <reference types="node" />
 import { IAvailableExtension, IExtensionDownloadInfo } from '../extensions/extension_manager/types';
 import { ILoadOrderGameInfo } from '../extensions/file_based_loadorder/types/types';
 import { GameVersionProviderFunc, GameVersionProviderTest, IGameVersionProviderOptions } from '../extensions/gameversion_management/types/IGameVersionProvider';
@@ -343,7 +345,6 @@ export interface IExtensionApi {
      * @memberOf IExtensionApi
      */
     dismissNotification?: (id: string) => void;
-    dismissAllNotifications?: () => void;
     /**
      * hides a notification and don't show it again
      * if this is called with the second parameter set to false, it re-enables the notification

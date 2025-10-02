@@ -5,5 +5,5 @@ export interface IDynDivProps {
     orientation?: 'horizontal' | 'vertical';
 }
 export type ExportType = IDynDivProps & IExtensibleProps & React.HTMLAttributes<any> & any;
-declare const _default: React.ComponentClass<ExportType>;
+declare const _default: React.ComponentClass<any, any>;
 export default _default;

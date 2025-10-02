@@ -23,5 +23,5 @@ export interface IContextMenuProps {
     className?: string;
     onTrigger?: () => void;
 }
-declare const _default: React.ComponentClass<IContextMenuProps>;
+declare const _default: React.ComponentClass<IContextMenuProps, any>;
 export default _default;

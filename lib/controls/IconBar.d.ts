@@ -21,5 +21,5 @@ export interface IBaseProps {
     t: TFunction;
 }
 type ExportType = IBaseProps & IActionControlProps & IExtensibleProps & React.HTMLAttributes<any>;
-declare const _default: React.ComponentClass<ExportType>;
+declare const _default: React.ComponentClass<ExportType, any>;
 export default _default;

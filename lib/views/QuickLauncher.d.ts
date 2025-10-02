@@ -3,5 +3,5 @@ import * as React from 'react';
 export interface IBaseProps {
     t: TFunction;
 }
-declare const _default: React.ComponentClass<IBaseProps>;
+declare const _default: React.ComponentClass<IBaseProps, any>;
 export default _default;
