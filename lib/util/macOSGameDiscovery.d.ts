@@ -1,6 +1,6 @@
 /**
  * macOS-specific game discovery utilities
- * Implements priority order: native > app store > steam > other mac stores > windows games
+ * Implements priority order: steam(manifests) > native apps > other mac stores > CrossOver/Parallels > other Windows games
  */
 import Bluebird from 'bluebird';
 import { IGame } from '../types/IGame';

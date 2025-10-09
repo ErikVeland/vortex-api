@@ -262,6 +262,8 @@ export interface IRunOptions {
     detach?: boolean;
     expectSuccess?: boolean;
     onSpawned?: (pid?: number) => void;
+    constrained?: boolean;
+    attribution?: string;
 }
 /**
  * all parameters passed to runExecutable. This is used to support interpreters

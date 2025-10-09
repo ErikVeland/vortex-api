@@ -1,6 +1,5 @@
 /// <reference types="node" />
 /// <reference types="node" />
-import Promise from 'bluebird';
 export declare function writeFileAtomic(filePath: string, input: string | Buffer): Promise<void>;
 /**
  * copy a file in such a way that it will not replace the target if the copy is
@@ -15,3 +14,8 @@ export declare function writeFileAtomic(filePath: string, input: string | Buffer
  * @returns {Promise<void>}
  */
 export declare function copyFileAtomic(srcPath: string, destPath: string): Promise<void>;
+/**
+ * Perform an atomic copy using APFS clone where possible on macOS.
+ * Falls back to regular copy if clone is unsupported or cross-volume.
+ */
+export declare function copyFileCloneAtomic(srcPath: string, destPath: string): Promise<void>;

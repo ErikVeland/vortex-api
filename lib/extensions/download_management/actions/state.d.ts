@@ -88,9 +88,6 @@ export declare const setDownloadInterrupted: reduxAct.ComplexActionCreator2<stri
 export declare const removeDownload: reduxAct.ComplexActionCreator1<string, {
     id: string;
 }, {}>;
-export declare const removeDownloadSilent: reduxAct.ComplexActionCreator1<string, {
-    id: string;
-}, {}>;
 /**
  * sets the current download speed in bytes/second
  */
