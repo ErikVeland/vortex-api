@@ -1,5 +1,3 @@
-/// <reference types="node" />
-/// <reference types="node" />
 export declare function writeFileAtomic(filePath: string, input: string | Buffer): Promise<void>;
 /**
  * copy a file in such a way that it will not replace the target if the copy is
