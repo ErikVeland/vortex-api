@@ -24,16 +24,16 @@ export interface IRemoveFileOptions {
 }
 export declare function setTFunction(tFunc: TFunction): void;
 export declare function genFSWrapperAsync<T extends (...args: any[]) => any>(func: T): (...args: any[]) => any;
-declare const chmodAsync: (path: string, mode: string | number) => Promise<void>;
-declare const closeAsync: (fd: number) => Promise<void>;
-declare const fsyncAsync: (fd: number) => Promise<void>;
-declare const lstatAsync: (path: string) => Promise<fs.Stats>;
-declare const mkdirAsync: (path: string) => Promise<void>;
-declare const mkdirsAsync: (path: string) => Promise<void>;
-declare const moveAsync: (src: string, dest: string, options?: fs.MoveOptions) => Promise<void>;
-declare const openAsync: (path: string, flags: string | number, mode?: number) => Promise<number>;
-declare const readdirAsync: (path: string) => Promise<string[]>;
-declare const readFileAsync: (...args: any[]) => Promise<any>;
+declare const chmodAsync: (path: string, mode: string | number) => PromiseBB<void>;
+declare const closeAsync: (fd: number) => PromiseBB<void>;
+declare const fsyncAsync: (fd: number) => PromiseBB<void>;
+declare const lstatAsync: (path: string) => PromiseBB<fs.Stats>;
+declare const mkdirAsync: (path: string) => PromiseBB<void>;
+declare const mkdirsAsync: (path: string) => PromiseBB<void>;
+declare const moveAsync: (src: string, dest: string, options?: fs.MoveOptions) => PromiseBB<void>;
+declare const openAsync: (path: string, flags: string | number, mode?: number) => PromiseBB<number>;
+declare const readdirAsync: (path: string) => PromiseBB<string[]>;
+declare const readFileAsync: (...args: any[]) => PromiseBB<any>;
 /**
  * USAGE GUIDANCE:
  *
@@ -50,30 +50,30 @@ declare const readFileAsync: (...args: any[]) => Promise<any>;
  * Consider migrating statSilentAsync() usage to statAsync() for better robustness,
  * unless the silent behavior is specifically required.
  */
-declare const statAsync: (path: string) => Promise<fs.Stats>;
-declare const statSilentAsync: (path: string) => Promise<fs.Stats>;
-declare const symlinkAsync: (srcpath: string, dstpath: string, type?: string) => Promise<void>;
-declare const utimesAsync: (path: string, atime: number, mtime: number) => Promise<void>;
-declare const writeAsync: <BufferT>(...args: any[]) => Promise<{
+declare const statAsync: (path: string) => PromiseBB<fs.Stats>;
+declare const statSilentAsync: (path: string) => PromiseBB<fs.Stats>;
+declare const symlinkAsync: (srcpath: string, dstpath: string, type?: string) => PromiseBB<void>;
+declare const utimesAsync: (path: string, atime: number, mtime: number) => PromiseBB<void>;
+declare const writeAsync: <BufferT>(...args: any[]) => PromiseBB<{
     bytesWritten: number;
     buffer: BufferT;
 }>;
-declare const readAsync: <BufferT>(...args: any[]) => Promise<{
+declare const readAsync: <BufferT>(...args: any[]) => PromiseBB<{
     bytesRead: number;
     buffer: BufferT;
 }>;
-declare const writeFileAsync: (file: string, data: any, options?: fs.WriteFileOptions) => Promise<void>;
-declare const appendFileAsync: (file: string, data: any, options?: fs.WriteFileOptions) => Promise<void>;
+declare const writeFileAsync: (file: string, data: any, options?: fs.WriteFileOptions) => PromiseBB<void>;
+declare const appendFileAsync: (file: string, data: any, options?: fs.WriteFileOptions) => PromiseBB<void>;
 export { appendFileAsync, chmodAsync, closeAsync, fsyncAsync, lstatAsync, mkdirAsync, mkdirsAsync, moveAsync, openAsync, readdirAsync, readAsync, readFileAsync, statAsync, statSilentAsync, symlinkAsync, utimesAsync, writeAsync, writeFileAsync, };
-export declare function isDirectoryAsync(dirPath: string): Promise<boolean>;
+export declare function isDirectoryAsync(dirPath: string): PromiseBB<boolean>;
 export declare function ensureDirSync(dirPath: string): void;
-export declare function ensureFileAsync(filePath: string): Promise<void>;
-export declare function ensureDirAsync(dirPath: string, onDirCreatedCB?: (created: string) => Promise<void>): Promise<void>;
+export declare function ensureFileAsync(filePath: string): PromiseBB<void>;
+export declare function ensureDirAsync(dirPath: string, onDirCreatedCB?: (created: string) => PromiseBB<void>): PromiseBB<void>;
 /**
  * move a file. If the destination exists, will generate a new name with an
  * increasing counter until an unused name is found
  */
-export declare function moveRenameAsync(src: string, dest: string): Promise<string>;
+export declare function moveRenameAsync(src: string, dest: string): PromiseBB<string>;
 /**
  * copy file
  * The copy function from fs-extra doesn't (at the time of writing) correctly check that a file
@@ -88,20 +88,20 @@ export declare function moveRenameAsync(src: string, dest: string): Promise<stri
 export declare function copyAsync(src: string, dest: string, options?: fs.CopyOptions & {
     noSelfCopy?: boolean;
     showDialogCallback?: () => boolean;
-}): Promise<void>;
-export declare function linkAsync(src: string, dest: string, options?: ILinkFileOptions): Promise<void>;
+}): PromiseBB<void>;
+export declare function linkAsync(src: string, dest: string, options?: ILinkFileOptions): PromiseBB<void>;
 export declare function removeSync(dirPath: string): void;
-export declare function unlinkAsync(filePath: string, options?: IRemoveFileOptions): Promise<void>;
-export declare function renameAsync(sourcePath: string, destinationPath: string): Promise<void>;
-export declare function rmdirAsync(dirPath: string): Promise<void>;
-export declare function removeAsync(remPath: string, options?: IRemoveFileOptions): Promise<void>;
-export declare function readlinkAsync(linkPath: string): Promise<string>;
-export declare function ensureDirWritableAsync(dirPath: string, confirm?: () => PromiseLike<void>): Promise<void>;
-export declare function changeFileOwnership(filePath: string, stat: fs.Stats): Promise<void>;
-export declare function changeFileAttributes(filePath: string, wantedAttributes: number, stat: fs.Stats): Promise<void>;
-export declare function makeFileWritableAsync(filePath: string): Promise<void>;
-export declare function forcePerm<T>(t: TFunction, op: () => Promise<T>, filePath?: string, maxTries?: number): Promise<T>;
-export declare function withTmpDirImpl<T>(cb: (tmpPath: string) => Promise<T>): Promise<T>;
+export declare function unlinkAsync(filePath: string, options?: IRemoveFileOptions): PromiseBB<void>;
+export declare function renameAsync(sourcePath: string, destinationPath: string): PromiseBB<void>;
+export declare function rmdirAsync(dirPath: string): PromiseBB<void>;
+export declare function removeAsync(remPath: string, options?: IRemoveFileOptions): PromiseBB<void>;
+export declare function readlinkAsync(linkPath: string): PromiseBB<string>;
+export declare function ensureDirWritableAsync(dirPath: string, confirm?: () => PromiseLike<void>): PromiseBB<void>;
+export declare function changeFileOwnership(filePath: string, stat: fs.Stats): PromiseBB<void>;
+export declare function changeFileAttributes(filePath: string, wantedAttributes: number, stat: fs.Stats): PromiseBB<void>;
+export declare function makeFileWritableAsync(filePath: string): PromiseBB<void>;
+export declare function forcePerm<T>(t: TFunction, op: () => PromiseBB<T>, filePath?: string, maxTries?: number): PromiseBB<T>;
+export declare function withTmpDirImpl<T>(cb: (tmpPath: string) => PromiseBB<T>): PromiseBB<T>;
 export interface ITmpOptions {
     cleanup?: boolean;
 }

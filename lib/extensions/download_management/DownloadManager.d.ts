@@ -3,7 +3,6 @@ import { IDownloadOptions } from './types/IDownload';
 import { IDownloadResult } from './types/IDownloadResult';
 import { ProgressCallback } from './types/ProgressCallback';
 import { IProtocolHandlers } from './types/ProtocolHandlers';
-import Bluebird from 'bluebird';
 export type RedownloadMode = 'always' | 'never' | 'ask' | 'replace';
 export declare class AlreadyDownloaded extends Error {
     private mFileName;
@@ -54,7 +53,7 @@ declare class DownloadManager {
      * @memberOf DownloadManager
      */
     constructor(downloadPath: string, maxWorkers: number, maxChunks: number, speedCB: (speed: number) => void, userAgent: string, protocolHandlers: IProtocolHandlers, maxBandwidth: () => number);
-    setFileExistsCB: (cb: (fileName: string) => Bluebird<boolean>) => void;
+    setFileExistsCB: (cb: (fileName: string) => Promise<boolean>) => void;
     setDownloadPath: (downloadPath: string) => void;
     /**
      * Get the appropriate HTTP agent based on protocol for persistent connections
@@ -76,8 +75,8 @@ declare class DownloadManager {
      *
      * @memberOf DownloadManager
      */
-    enqueue: (id: string, urls: string[], fileName: string, progressCB: ProgressCallback, destinationPath?: string, options?: IDownloadOptions) => Bluebird<IDownloadResult>;
-    resume: (id: string, filePath: string, urls: string[], received: number, size: number, started: number, chunks: IChunk[], progressCB: ProgressCallback, options?: IDownloadOptions) => Bluebird<IDownloadResult>;
+    enqueue: (id: string, urls: string[], fileName: string, progressCB: ProgressCallback, destinationPath?: string, options?: IDownloadOptions) => Promise<IDownloadResult>;
+    resume: (id: string, filePath: string, urls: string[], received: number, size: number, started: number, chunks: IChunk[], progressCB: ProgressCallback, options?: IDownloadOptions) => Promise<IDownloadResult>;
     /**
      * cancels a download. This stops the download but doesn't remove the file
      * This call does not wait for the download to actually be stopped, it merely

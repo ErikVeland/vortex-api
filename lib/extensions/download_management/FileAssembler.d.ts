@@ -1,4 +1,3 @@
-import Promise from 'bluebird';
 /**
  * assembles a file received in chunks.
  *

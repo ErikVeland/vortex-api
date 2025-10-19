@@ -1,4 +1,3 @@
-import Promise from 'bluebird';
 export interface IResolvedURL {
     urls: string[];
     updatedUrl?: string;

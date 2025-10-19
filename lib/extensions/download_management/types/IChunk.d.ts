@@ -1,4 +1,3 @@
-import Promise from 'bluebird';
 export interface IChunk {
     url: () => Promise<string>;
     received: number;

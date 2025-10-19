@@ -1,4 +1,3 @@
-import Bluebird from 'bluebird';
 import * as reduxAct from 'redux-act';
 import { IExtensionApi } from '../../../types/IExtensionContext';
 import { IProfile } from '../types/IProfile';
@@ -31,5 +30,5 @@ export interface IEnableOptions {
     allowAutoDeploy?: boolean;
     willBeReplaced?: boolean;
 }
-declare const setModsEnabled: (api: IExtensionApi, profileIdIn: string, modIdsIn: string[], enableIn: boolean, optionsIn?: IEnableOptions) => Bluebird<void>;
+declare const setModsEnabled: (api: IExtensionApi, profileIdIn: string, modIdsIn: string[], enableIn: boolean, optionsIn?: IEnableOptions) => Promise<void>;
 export { setModsEnabled, };

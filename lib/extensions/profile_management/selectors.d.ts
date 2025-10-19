@@ -1,7 +1,6 @@
 import { IProfile } from './types/IProfile';
 import { ICacheObject, OutputParametricSelector, ParametricSelector } from 're-reselect';
 import { IState } from '../../types/IState';
-export declare const activeGameId: (state: IState) => string;
 export declare const gameProfiles: ((state: IState) => IProfile[]) & import("reselect").OutputSelectorFields<(args_0: string, args_1: {
     [profileId: string]: IProfile;
 }) => IProfile[], {
@@ -9,7 +8,6 @@ export declare const gameProfiles: ((state: IState) => IProfile[]) & import("res
 }> & {
     clearCache: () => void;
 };
-export declare const activeProfile: (state: any) => IProfile;
 export declare function profileById(state: IState, profileId: string): IProfile;
 export declare const lastActiveProfileForGame: ParametricSelector<IState, string, string> & {
     resultFunc: (res1: {

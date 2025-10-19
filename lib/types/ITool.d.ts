@@ -1,4 +1,3 @@
-import Promise from 'bluebird';
 import { IGameStoreEntry } from './IGameStoreEntry';
 /**
  * static information about a tool associated with a game.

@@ -3,7 +3,6 @@ import { IGame } from '../../types/IGame';
 import { IGameStore } from '../../types/IGameStore';
 import { IState } from '../../types/IState';
 import { IExtensionDownloadInfo } from '../extension_manager/types';
-import Promise from 'bluebird';
 import * as Redux from 'redux';
 export interface IGameStub {
     ext: IExtensionDownloadInfo;
@@ -21,6 +20,7 @@ declare class GameModeManager {
     private mGameStubs;
     private mKnownGameStores;
     private mActiveSearch;
+    private mActiveSearchCancelled;
     private mOnGameModeActivated;
     constructor(api: IExtensionApi, extensionGames: IGame[], gameStubs: IGameStub[], gameStoreExtensions: IGameStore[], onGameModeActivated: (mode: string) => void);
     /**

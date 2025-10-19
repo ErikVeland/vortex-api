@@ -1,7 +1,6 @@
 import { IModType } from '../extensions/gamemode_management/types/IModType';
 import { IDiscoveryResult, IMod } from './IState';
 import { ITool } from './ITool';
-import Promise from 'bluebird';
 import { IStoreQuery } from '../util/GameStoreHelper';
 export { IModType };
 export type DirectoryCleaningMode = 'tag' | 'all';

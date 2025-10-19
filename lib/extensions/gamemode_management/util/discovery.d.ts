@@ -4,10 +4,9 @@ import { IGame } from '../../../types/IGame';
 import { ITool } from '../../../types/ITool';
 import { Normalize } from '../../../util/getNormalizeFunc';
 import { IDiscoveryResult } from '../types/IDiscoveryResult';
-import Bluebird from 'bluebird';
 export type DiscoveredCB = (gameId: string, result: IDiscoveryResult) => void;
 export type DiscoveredToolCB = (gameId: string, result: IDiscoveredTool) => void;
-export declare function quickDiscoveryTools(gameId: string, tools: ITool[], onDiscoveredTool: DiscoveredToolCB): Bluebird<void>;
+export declare function quickDiscoveryTools(gameId: string, tools: ITool[], onDiscoveredTool: DiscoveredToolCB): Promise<void>;
 /**
  * run the "quick" discovery using functions provided by the game extension
  *
@@ -20,11 +19,11 @@ export declare function quickDiscoveryTools(gameId: string, tools: ITool[], onDi
  */
 export declare function quickDiscovery(knownGames: IGame[], discoveredGames: {
     [id: string]: IDiscoveryResult;
-}, onDiscoveredGame: DiscoveredCB, onDiscoveredTool: DiscoveredToolCB, onProgress?: (gameId: string, step: string, percent: number) => void): Bluebird<string[]>;
-export declare function assertToolDir(tool: ITool, testPath: string): Bluebird<string>;
+}, onDiscoveredGame: DiscoveredCB, onDiscoveredTool: DiscoveredToolCB, onProgress?: (gameId: string, step: string, percent: number) => void): Promise<string[]>;
+export declare function assertToolDir(tool: ITool, testPath: string): Promise<string>;
 export declare function discoverRelativeTools(game: IGame, gamePath: string, discoveredGames: {
     [id: string]: IDiscoveryResult;
-}, onDiscoveredTool: DiscoveredToolCB, normalize: Normalize): Bluebird<void>;
+}, onDiscoveredTool: DiscoveredToolCB, normalize: Normalize): Promise<void>;
 /**
  * run the "search"-discovery based on required files as specified by the game extension
  *
@@ -34,9 +33,9 @@ export declare function discoverRelativeTools(game: IGame, gamePath: string, dis
  * @param {string[]} searchPaths
  * @param {DiscoveredCB} onDiscoveredGame
  * @param {Progress} progressObj
- * @returns {Bluebird<any[]>}
+ * @returns {Promise<any[]>}
  */
 export declare function searchDiscovery(knownGames: IGame[], discoveredGames: {
     [id: string]: IDiscoveryResult;
-}, searchPaths: string[], onDiscoveredGame: DiscoveredCB, onDiscoveredTool: DiscoveredToolCB, onError: (title: string, message: string) => void, progressCB: (idx: number, percent: number, label: string) => void): Bluebird<any>;
+}, searchPaths: string[], onDiscoveredGame: DiscoveredCB, onDiscoveredTool: DiscoveredToolCB, onError: (title: string, message: string) => void, progressCB: (idx: number, percent: number, label: string) => void): Promise<any>;
 export declare function suggestStagingPath(api: IExtensionApi, gameId: string): Promise<string>;

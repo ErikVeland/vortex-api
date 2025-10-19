@@ -1,4 +1,3 @@
-import Promise from 'bluebird';
 import * as React from 'react';
 export interface IIconProps {
     id?: string;

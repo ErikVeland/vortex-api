@@ -2,7 +2,6 @@
  * macOS-specific game discovery utilities
  * Implements priority order: steam(manifests) > native apps > other mac stores > CrossOver/Parallels > other Windows games
  */
-import Bluebird from 'bluebird';
 import { IGame } from '../types/IGame';
 import { IDiscoveryResult } from '../extensions/gamemode_management/types/IDiscoveryResult';
 import { IDiscoveredTool } from '../types/IDiscoveredTool';
@@ -66,7 +65,7 @@ export declare const MACOS_DISCOVERY_PRIORITIES: {
  */
 export declare function discoverMacOSGames(knownGames: IGame[], discoveredGames: {
     [id: string]: IDiscoveryResult;
-}, onDiscoveredGame: DiscoveredCB, onDiscoveredTool: DiscoveredToolCB, onProgress?: (gameId: string, step: string, percent: number) => void): Bluebird<string[]>;
+}, onDiscoveredGame: DiscoveredCB, onDiscoveredTool: DiscoveredToolCB, onProgress?: (gameId: string, step: string, percent: number) => void): Promise<string[]>;
 /**
  * Internal function for discovering games with progress feedback and parallelization
  */

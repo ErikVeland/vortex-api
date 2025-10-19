@@ -1,6 +1,5 @@
 import { IExtensionApi } from '../../../types/IExtensionContext';
 import { IMod } from '../types/IMod';
-import Promise from 'bluebird';
 export declare class CycleError extends Error {
     private mCycles;
     constructor(cycles: string[][]);

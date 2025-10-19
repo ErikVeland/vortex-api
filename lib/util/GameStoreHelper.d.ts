@@ -1,4 +1,3 @@
-import Bluebird from 'bluebird';
 import { IGameStore } from '../types/IGameStore';
 import { IGameStoreEntry } from '../types/IGameStoreEntry';
 import { IExtensionApi } from '../types/IExtensionContext';
@@ -12,15 +11,15 @@ declare class GameStoreHelper {
     private mStores;
     private mStoresDict;
     getGameStore(storeId: string): IGameStore;
-    isGameInstalled(id: string, storeId?: string): Bluebird<string>;
-    isGameStoreInstalled(storeId: string): Bluebird<boolean>;
-    registryLookup(lookup: string): Bluebird<IGameStoreEntry>;
-    find: (query: IStoreQuery) => Bluebird<IGameStoreEntry[]>;
-    findByName(name: string | string[], storeId?: string): Bluebird<IGameStoreEntry>;
-    findByAppId(appId: string | string[], storeId?: string): Bluebird<IGameStoreEntry>;
-    launchGameStore(api: IExtensionApi, gameStoreId: string, parameters?: string[], askConsent?: boolean): Bluebird<void>;
-    identifyStore: (gamePath: string) => Bluebird<string>;
-    reloadGames(api?: IExtensionApi): Bluebird<void>;
+    isGameInstalled(id: string, storeId?: string): Promise<string>;
+    isGameStoreInstalled(storeId: string): Promise<boolean>;
+    registryLookup(lookup: string): Promise<IGameStoreEntry>;
+    find: (query: IStoreQuery) => Promise<IGameStoreEntry[]>;
+    findByName(name: string | string[], storeId?: string): Promise<IGameStoreEntry>;
+    findByAppId(appId: string | string[], storeId?: string): Promise<IGameStoreEntry>;
+    launchGameStore(api: IExtensionApi, gameStoreId: string, parameters?: string[], askConsent?: boolean): Promise<void>;
+    identifyStore: (gamePath: string) => Promise<string>;
+    reloadGames(api?: IExtensionApi): Promise<void>;
     /**
      * @returns list of stores, sorted by priority
      */

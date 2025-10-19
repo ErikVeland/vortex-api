@@ -15,7 +15,7 @@ declare class DynamicDownloadConcurrencyLimiter {
     private mRunning;
     private mApi;
     constructor(api: IExtensionApi);
-    do<T>(cb: () => Bluebird<T>): Bluebird<T>;
+    do<T>(cb: () => Promise<T>): Promise<T>;
     private process;
 }
 export { DynamicDownloadConcurrencyLimiter };
@@ -23,7 +23,6 @@ import { IInstallResult } from './types/IInstallResult';
 import { IFileListItem } from './types/IMod';
 import { InstallFunc } from './types/InstallFunc';
 import { TestSupported } from './types/TestSupported';
-import Bluebird from 'bluebird';
 export declare class ArchiveBrokenError extends Error {
     constructor(message: string);
 }
@@ -84,7 +83,7 @@ declare class InstallManager {
      * @memberOf InstallManager
      */
     addInstaller(id: string, priority: number, testSupported: TestSupported, install: InstallFunc): void;
-    simulate(api: IExtensionApi, gameId: string, archivePath: string, tempPath: string, extractList?: IFileListItem[], unattended?: boolean, installChoices?: any, progress?: (entries: string[], percent: number) => void): Bluebird<IInstallResult>;
+    simulate(api: IExtensionApi, gameId: string, archivePath: string, tempPath: string, extractList?: IFileListItem[], unattended?: boolean, installChoices?: any, progress?: (entries: string[], percent: number) => void): Promise<IInstallResult>;
     /**
      * start installing a mod.
      *
@@ -102,7 +101,7 @@ declare class InstallManager {
      * @param {boolean} forceGameId set if the user has already been queried which game
      *                              to install the mod for
      * @param {IFileListItem[]} fileList if set, the listed files (and only those) get extracted
-     *                                   directly, ignoring any installer scripts
+     *                                   ignoring any installer scripts
      * @param {boolean} unattended if set and there is an option preset, the installation
      *                             will happen automatically without user interaction
      * @param {boolean} forceInstaller if set, this should be the id of an installer
@@ -110,8 +109,8 @@ declare class InstallManager {
      *                                 the auto-detection.
      */
     install(archiveId: string, archivePath: string, downloadGameIds: string[], api: IExtensionApi, info: any, processDependencies: boolean, enable: boolean, callback: (error: Error, id: string) => void, forceGameId?: string, fileList?: IFileListItem[], unattended?: boolean, forceInstaller?: string, allowAutoDeploy?: boolean): void;
-    installDependencies(api: IExtensionApi, profile: IProfile, gameId: string, modId: string, allowAutoDeploy: boolean): Bluebird<void>;
-    installRecommendations(api: IExtensionApi, profile: IProfile, gameId: string, modId: string): Bluebird<void>;
+    installDependencies(api: IExtensionApi, profile: IProfile, gameId: string, modId: string, allowAutoDeploy: boolean): Promise<void>;
+    installRecommendations(api: IExtensionApi, profile: IProfile, gameId: string, modId: string): Promise<void>;
     private augmentRules;
     private withDependenciesContext;
     private hasFuzzyReference;

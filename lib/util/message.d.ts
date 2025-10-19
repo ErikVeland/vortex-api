@@ -1,6 +1,5 @@
 import { IErrorOptions } from '../types/IExtensionContext';
 import { IState } from '../types/IState';
-import Promise from 'bluebird';
 import * as Redux from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 /**

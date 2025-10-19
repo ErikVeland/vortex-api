@@ -1,7 +1,6 @@
 import { IExtensionApi } from '../../../types/IExtensionContext';
 import { Normalize } from '../../../util/getNormalizeFunc';
 import { TFunction } from '../../../util/i18n';
-import Promise from 'bluebird';
 /**
  * details about a file change
  */

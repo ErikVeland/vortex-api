@@ -1,5 +1,4 @@
 import { Normalize } from './getNormalizeFunc';
-import Bluebird from 'bluebird';
 import * as Redux from 'redux';
 import * as semver from 'semver';
 /**
@@ -64,7 +63,7 @@ export declare function restackErr(error: Error, stackErr: Error): Error;
  * will be called only after everything before it in the queue is finished
  * and with the promise that nothing else in the queue is run in parallel.
  */
-export declare function makeQueue<T>(): (func: () => Bluebird<T>, tryOnly: boolean) => Bluebird<T>;
+export declare function makeQueue<T>(): (func: () => Promise<T>, tryOnly: boolean) => Promise<T>;
 /**
  * spawn this application itself
  * @param args
@@ -101,7 +100,7 @@ export declare function escapeRE(input: string): string;
 export interface ITimeoutOptions {
     cancel?: boolean;
     throw?: boolean;
-    queryContinue?: () => Bluebird<boolean>;
+    queryContinue?: () => Promise<boolean>;
 }
 /**
  * set a timeout for a promise. When the timeout expires the promise returned by this
@@ -110,12 +109,12 @@ export interface ITimeoutOptions {
  * @param delayMS the time in milliseconds after which this should return
  * @param options options detailing how this timeout acts
  */
-export declare function timeout<T>(prom: Bluebird<T>, delayMS: number, options?: ITimeoutOptions): Bluebird<T>;
+export declare function timeout<T>(prom: Promise<T>, delayMS: number, options?: ITimeoutOptions): Promise<T>;
 /**
  * wait for the specified number of milliseconds before resolving the promise.
- * Bluebird has this feature as Promise.delay but when using es6 default promises this can be used
+ * This replaces Promise.delay feature with a native Promise implementation.
  */
-export declare function delay(timeoutMS: number): Bluebird<void>;
+export declare function delay(timeoutMS: number): Promise<void>;
 /**
  * characters invalid in a file path
  */
@@ -145,7 +144,7 @@ export interface IFlattenParameters {
  * @param options parameters controlling the flattening process
  */
 export declare function flatten(obj: any, options?: IFlattenParameters): any;
-export declare function toPromise<ResT>(func: (cb: any) => void): Bluebird<ResT>;
+export declare function toPromise<ResT>(func: (cb: any) => void): Promise<ResT>;
 export declare function makeUnique<T>(input: T[]): T[];
 /**
  * create a list with only "unique" items, using a key function to determine uniqueness.
@@ -158,7 +157,7 @@ export declare function makeUniqueByKey<T>(input: T[], key: (item: T) => string)
 export declare function withTmpDir<T>(cb: (tmpPath: string) => Promise<T>): Promise<T>;
 export declare function unique<T, U>(input: T[], keyFunc?: (item: T) => U): T[];
 export declare function delayed(delayMS: number): Promise<void>;
-export declare function toBlue<T, ArgsT extends any[]>(func: (...args: ArgsT) => Promise<T>): (...args: ArgsT) => Bluebird<T>;
+export declare function toBlue<T, ArgsT extends any[]>(func: (...args: ArgsT) => Promise<T>): (...args: ArgsT) => Promise<T>;
 export declare function replaceRecursive(input: any, from: any, to: any): any;
 export declare function semverCoerce(input: string, options?: semver.CoerceOptions): semver.SemVer;
 export declare function batchDispatch(store: Redux.Dispatch | Redux.Store, actions: Redux.Action[]): void;
@@ -178,7 +177,7 @@ export declare function isFunction(functionToCheck: any): boolean;
 export declare function wrapExtCBAsync<ArgT extends any[], ResT>(cb: (...args: ArgT) => PromiseLike<ResT>, extInfo?: {
     name: string;
     official: boolean;
-}): (...args: ArgT) => Bluebird<ResT>;
+}): (...args: ArgT) => Promise<ResT>;
 export declare function wrapExtCBSync<ArgT extends any[], ResT>(cb: (...args: ArgT) => ResT, extInfo?: {
     name: string;
     official: boolean;
