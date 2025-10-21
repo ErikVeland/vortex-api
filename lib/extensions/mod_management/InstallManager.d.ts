@@ -46,6 +46,9 @@ declare class InstallManager {
     private mActiveInstalls;
     private mMainInstallsLimit;
     constructor(api: IExtensionApi, installPath: (gameId: string) => string);
+    private handleDownloadFinished;
+    private handleDownloadFailed;
+    private handleDownloadSkipped;
     /**
      * Get information about all currently active installations
      */
@@ -123,6 +126,19 @@ declare class InstallManager {
      * Queue an installation to run asynchronously without blocking downloads
      */
     private queueInstallation;
+    private generateDependencyInstallKey;
+    private startQueuedInstallation;
+    private mInstallPhaseState;
+    private ensurePhaseState;
+    private pollAllPhasesComplete;
+    private pollPhaseSettlement;
+    private checkCollectionPhaseStatus;
+    private hasActiveOrPendingInstallation;
+    private reQueueDownloadedMods;
+    private scheduleDeployOnPhaseSettled;
+    private markPhaseDownloadsFinished;
+    private startPendingForPhase;
+    private maybeAdvancePhase;
     /**
      * when installing a mod from a dependency rule we store the id of the installed mod
      * in the rule for quicker and consistent matching but if - at a later time - we
@@ -200,5 +216,13 @@ declare class InstallManager {
      * @param {string} destinationPath path to install to
      */
     private extractArchive;
+    /**
+     * Find any download that matches the given mod reference using all available methods
+     */
+    private findDownloadForMod;
+    /**
+     * Helper method to show aggregated error notification for dependency installation failures
+     */
+    private showDependencyError;
 }
 export default InstallManager;
