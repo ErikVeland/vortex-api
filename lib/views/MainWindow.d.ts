@@ -83,5 +83,5 @@ export declare class MainWindow extends React.Component<IProps, IMainWindowState
     private renderPage;
     private setMainPage;
 }
-declare const _default: import("react-redux").ConnectedComponent<React.ComponentClass<IBaseProps, any>, import("react-redux").Omit<React.ClassAttributes<React.Component<IBaseProps, any, any>> & IBaseProps, never>>;
-export default _default;
+declare const ConnectedMainWindow: React.ComponentType<IBaseProps>;
+export default ConnectedMainWindow;

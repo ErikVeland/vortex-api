@@ -16,6 +16,12 @@ import { TFunction } from './i18n';
 import * as fs from 'fs-extra';
 export { constants, FSWatcher, Stats, WriteStream } from 'fs';
 export { accessSync, appendFileSync, closeSync, createReadStream, createWriteStream, linkSync, openSync, readdirSync, readFileSync, statSync, symlinkSync, watch, writeFileSync, writeSync, } from 'original-fs';
+/**
+ * Check if a file or directory exists synchronously
+ * @param filePath The path to check
+ * @returns boolean indicating if the path exists
+ */
+export declare function existsSync(filePath: string): boolean;
 export interface ILinkFileOptions {
     showDialogCallback?: () => boolean;
 }
